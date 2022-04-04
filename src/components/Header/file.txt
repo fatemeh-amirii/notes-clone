@@ -1,0 +1,670 @@
+
+// function Header() {
+//   const [user, setUser] = useState("");
+
+//   const handleSignOut = () => {
+//     if (user) {
+//       //if user existed
+//       console.log("you signed out");
+//     }
+//   };
+//   return (
+//     <div className="header">
+//       <Link to="/">
+//         <h1>Home</h1>
+//       </Link>
+//       <div className="header_nav">
+//         <Link to={!user && "login"}>
+//           <div onClick={handleSignOut} className="header_option">
+//             <span className="header_optionLineOne">
+//               {" "}
+//               Hello {!user ? "Guest" : user.email}
+//             </span>
+//             <span className="header_optionLineTwo">
+//               {user ? "Sign Out" : "Sign In "}
+//             </span>
+//           </div>
+//         </Link>
+
+//         <Link to="/Note">
+//           <div className="header_option">
+//             <span className="header_optionLineOne">Your</span>
+//             <span className="header_optionLineTwo">Notes</span>
+//           </div>
+//         </Link>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Header;
+//_____________________________________________________________________________________
+ <div className={`container ${className}`} id="container">
+      <div className="form-container  sign-up-container">
+        <form className="form-container" >
+          <h1 >Create Account</h1>
+          <input type="text" placeholder="Username" value={username}  onChange={(e)=>setUsername(e.target.value)} />
+          <input type="email" placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)} />
+          <input type="password" placeholder="Password" value={password}  onChange={(e)=>setPassword(e.target.value)} />
+          <button type="submit"    onClick={register} >Register</button>
+        </form>
+      </div>
+      <div className="form-container sign-in-container">
+        <form>
+          <h1>Login</h1>
+          <input type="email" placeholder="Email"  value={email}  onChange={(e)=>setEmail(e.target.value)}  />
+          <input type="password" placeholder="Password"   value={password}  onChange={(e)=>setPassword(e.target.value)} />
+          <button type="submit"  onClick={login} >Login</button>
+        </form>
+      </div>
+      <div className="slide-container">
+        <div className="slide">
+          <div className="slide-panel slide-top">
+            <button
+              className="ghost"
+              id="signIn"
+              onClick={() => setClassName("")}
+            >
+              GO TO LOGIN
+            </button>
+          </div>
+          <div className="slide-panel slide-bottom">
+            <button
+              className="ghost"
+              id="signUp"
+              onClick={() => setClassName("bottom-panel-active")}
+            >
+              GO TO REGISTER
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    //---------------------------------------------------------------------
+      <div className="home">
+      <div className="slide_container">
+        <Carousel breakPoints={breakPoints}>
+          {counter.map((item) => (
+            <NoteEditor item={item} />
+          ))}
+        </Carousel>
+      </div>
+      <h1 style={{ textAlign: "center" }}> Home!</h1>
+      {/* we nne to pass some properties */}
+      {/* Job 1  count: */}
+     
+      {/* Job 2 */}
+      {/* Job 3 */}
+      {/* Job 5 */}
+      {/* Job 6 */}
+    </div>
+
+    //-------------------------------------------------------------------------------------------
+    import React from "react";
+import "./Home.css";
+import img1 from "./assets/img/portfolio/portfolio-1.jpg"
+import img3 from "./assets/img/portfolio/portfolio-3.jpg"
+import img4 from "./assets/img/portfolio/portfolio-4.jpg"
+import img5 from "./assets/img/portfolio/portfolio-5.jpg"
+import img6 from "./assets/img/portfolio/portfolio-6.jpg"
+import img7 from "./assets/img/portfolio/portfolio-7.jpg"
+import img8 from "./assets/img/portfolio/portfolio-8.jpg"
+import img9 from "./assets/img/portfolio/portfolio-9.jpg"
+
+
+
+function Home() {
+  return (
+    <div>
+      {/* <header id="header" className="fixed-top ">
+        <div className="container d-flex align-items-center justify-content-between">
+          <h1 className="logo">
+            <a href="#">jobExp</a>
+          </h1>
+
+          <nav id="navbar" className="navbar">
+            <ul>
+              <li>
+                <a className="nav-link scrollto active" href="#hero">
+                  jobExp
+                </a>
+              </li>
+              <li>
+                <a className="nav-link scrollto" href="#about">
+                  درباره ما
+                </a>
+              </li>
+              <li>
+                <a className="nav-link scrollto" href="#services">
+                  ثبت نام
+                </a>
+              </li>
+              <li>
+                <a className="nav-link scrollto " href="#portfolio">
+                  ورود
+                </a>
+              </li>
+            </ul>
+            <i className="bi bi-list mobile-nav-toggle"></i>
+          </nav>
+        </div>
+      </header> */}
+
+      <section id="hero">
+        <div className="hero-container">
+          <h1>تجارب شما مارو میسازه</h1>
+        </div>
+      </section>
+
+      <main id="main">
+        <section id="about" className="about">
+          <div className="container">
+            <div className="section-title">
+              <h3>
+                ما <span>کی هستیم؟</span>
+              </h3>
+              <p>
+                ما یک تیم دونفره هستیم و ایده این سایت از اونجایی به ذهنمون رسید
+                که نیاز به دونستن تجربه دیگران رو تو خودمون احساس کردیم. راستش
+                هرکسی لازم داره از تجربیات کسی که راهی که تو سرش داره رو رفته
+                درس بگیره. چقدر خوب میشه که تجربیات خودمون رو اینجا مکتوب کنیم و
+                به هم کمک کنیم.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="cta" className="cta">
+          <div className="container">
+            <div className="text-center">
+              <h3>تجربه تو چی میگه</h3>
+              <p> این موهارو که تو آسیاب سفید نکردی</p>
+              <a className="cta-btn" href="#">
+                تو برایمان بگو
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="portfolio" className="portfolio">
+          <div className="container">
+            <div className="section-title">
+              <h3>
+                مشاغل <span>شما</span>
+              </h3>
+              <p>
+                اینجا میتونی دسته های مختلف مشاغل روببینی و تجربیات بقیه رو
+                بخونی
+              </p>
+            </div>
+
+            <div className="row">
+              <div className="col-lg-12 d-flex justify-content-center">
+                <ul id="portfolio-flters">
+                  <li data-filter="*" className="filter-active">
+                    همه
+                  </li>
+                  <li data-filter=".filter-app">فریلنسری ها</li>
+                  <li data-filter=".filter-card">شغل آزاد</li>
+                  <li data-filter=".filter-web">کارمندی</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="row portfolio-container">
+              <div className="col-lg-4 col-md-6 portfolio-item filter-app">
+                <img
+                  src={img1}
+                  className="img-fluid"
+                  alt=""
+                />
+                <div className="portfolio-info">
+                  <h4>فریلنسری ها</h4>
+                  <p>فریلنسری</p>
+                  <a
+                    href="../assets/img/portfolio/portfolio-1.jpg"
+                    data-gallery="portfolioGallery"
+                    className="portfolio-lightbox preview-link"
+                    title="App 1"
+                  >
+                    <i className="bx bx-plus"></i>
+                  </a>
+                  <a
+                    href="portfolio-details.html"
+                    className="details-link"
+                    title="More Details"
+                  >
+                    <i className="bx bx-link"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-md-6 portfolio-item filter-web">
+                <img
+                  src={img3}
+                  className="img-fluid"
+                  alt=""
+                />
+                <div className="portfolio-info">
+                  <h4>کارمندی</h4>
+                  <p>کارمندی</p>
+                  <a
+                    href="assets/img/portfolio/portfolio-2.jpg"
+                    data-gallery="portfolioGallery"
+                    className="portfolio-lightbox preview-link"
+                    title="Web 3"
+                  >
+                    <i className="bx bx-plus"></i>
+                  </a>
+                  <a
+                    href="portfolio-details.html"
+                    className="details-link"
+                    title="More Details"
+                  >
+                    <i className="bx bx-link"></i>
+                  </a>
+                </div>
+
+                <div className="col-lg-4 col-md-6 portfolio-item filter-card">
+                  <img
+                    src={img4}
+                    className="img-fluid"
+                    alt=""
+                  />
+                  <div className="portfolio-info">
+                    <h4>شغل آزاد</h4>
+                    <p>شغل آزاد</p>
+                    <a
+                      href="assets/img/portfolio/portfolio-4.jpg"
+                      data-gallery="portfolioGallery"
+                      className="portfolio-lightbox preview-link"
+                      title="Card 2"
+                    >
+                      <i className="bx bx-plus"></i>
+                    </a>
+                    <a
+                      href="portfolio-details.html"
+                      className="details-link"
+                      title="More Details"
+                    >
+                      <i className="bx bx-link"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 portfolio-item filter-web">
+                  <img
+                    src={img5}
+                    className="img-fluid"
+                    alt=""
+                  />
+                  <div className="portfolio-info">
+                    <h4>Web 2</h4>
+                    <p>Web</p>
+                    <a
+                      href="assets/img/portfolio/portfolio-5.jpg"
+                      data-gallery="portfolioGallery"
+                      className="portfolio-lightbox preview-link"
+                      title="Web 2"
+                    >
+                      <i className="bx bx-plus"></i>
+                    </a>
+                    <a
+                      href="portfolio-details.html"
+                      className="details-link"
+                      title="More Details"
+                    >
+                      <i className="bx bx-link"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 portfolio-item filter-app">
+                  <img
+                    src={img6}
+                    className="img-fluid"
+                    alt=""
+                  />
+                  <div className="portfolio-info">
+                    <h4>App 3</h4>
+                    <p>App</p>
+                    <a
+                      href="assets/img/portfolio/portfolio-6.jpg"
+                      data-gallery="portfolioGallery"
+                      className="portfolio-lightbox preview-link"
+                      title="App 3"
+                    >
+                      <i className="bx bx-plus"></i>
+                    </a>
+                    <a
+                      href="portfolio-details.html"
+                      className="details-link"
+                      title="More Details"
+                    >
+                      <i className="bx bx-link"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 portfolio-item filter-card">
+                  <img
+                    src={img7}
+                    className="img-fluid"
+                    alt=""
+                  />
+                  <div className="portfolio-info">
+                    <h4>Card 1</h4>
+                    <p>Card</p>
+                    <a
+                      href="assets/img/portfolio/portfolio-7.jpg"
+                      data-gallery="portfolioGallery"
+                      className="portfolio-lightbox preview-link"
+                      title="Card 1"
+                    >
+                      <i className="bx bx-plus"></i>
+                    </a>
+                    <a
+                      href="portfolio-details.html"
+                      className="details-link"
+                      title="More Details"
+                    >
+                      <i className="bx bx-link"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 portfolio-item filter-card">
+                  <img
+                    src={img8}
+                    className="img-fluid"
+                    alt=""
+                  />
+                  <div className="portfolio-info">
+                    <h4>Card 3</h4>
+                    <p>Card</p>
+                    <a
+                      href="assets/img/portfolio/portfolio-8.jpg"
+                      data-gallery="portfolioGallery"
+                      className="portfolio-lightbox preview-link"
+                      title="Card 3"
+                    >
+                      <i className="bx bx-plus"></i>
+                    </a>
+                    <a
+                      href="portfolio-details.html"
+                      className="details-link"
+                      title="More Details"
+                    >
+                      <i className="bx bx-link"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 portfolio-item filter-web">
+                  <img
+                    src={img9}
+                    className="img-fluid"
+                    alt=""
+                  />
+                  <div className="portfolio-info">
+                    <h4>Web 3</h4> <br />
+                    <p>Web</p>
+                    <a
+                      href="assets/img/portfolio/portfolio-9.jpg"
+                      data-gallery="portfolioGallery"
+                      className="portfolio-lightbox preview-link"
+                      title="Web 3"
+                    >
+                      <i className="bx bx-plus"></i>
+                    </a>
+                    <a
+                      href="portfolio-details.html"
+                      className="details-link"
+                      title="More Details"
+                    >
+                      <i className="bx bx-link"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer id="footer">
+        <div className="footer-top">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-3 col-md-6 footer-contact">
+                <h3>jobExp</h3>
+                <br />
+                <p>
+                  Iran Shiraz
+                  <strong>Phone:</strong> +98 938 887 3136
+                  <br />
+                  <strong>Email:</strong> info@jobExp.ir
+                  <br />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="container d-md-flex py-4">
+          <div className="me-md-auto text-center text-md-start">
+            <div className="copyright">
+              Copyright{" "}
+              <strong>
+                <span>jobExp</span>
+              </strong>
+              . All Rights Reserved
+            </div>
+            <div className="credits"></div>
+          </div>
+          <div className="social-links text-center text-md-right pt-3 pt-md-0">
+            <a href="#" className="twitter">
+              <i className="bx bxl-twitter"></i>
+            </a>
+            <a href="#" className="facebook">
+              <i className="bx bxl-facebook"></i>
+            </a>
+            <a href="#" className="instagram">
+              <i className="bx bxl-instagram"></i>
+            </a>
+            <a href="#" className="google-plus">
+              <i className="bx bxl-skype"></i>
+            </a>
+            <a href="#" className="linkedin">
+              <i className="bx bxl-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default Home;
+..........................................................
+{/*                     
+               <div classNameName="row" >
+               <div className="col-sm-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">تیتر نوشته</h5>
+              <p className="card-text border ">تجربه من در این زمینه</p>
+              <a href="#" className="btn btn-primary">تایید</a>
+              <a href="#" className="btn btn-primary">حذف</a>
+            </div>
+          </div>
+        </div>
+
+               </div>  */}
+
+
+
+
+
+
+
+
+               {/* 
+        {/* <div className="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div className="card h-75">
+            <div className="card-body">
+              <h5 className="card-title">تیتر نوشته</h5>
+              <p className="card-text border ">تجربه من در این زمینه</p>
+            
+            </div>
+          
+          </div>
+        </div>
+  */}
+
+
+
+  ---------------------------------------------------------------
+  (
+    <section className="note">
+      <div className="row  rtl">
+        <div className="col ">
+          <div style={{ backgroundColor: "#181616a6" }}>
+            <div className="col-12 col-md-6">
+              <div className="col-12 ">
+                <select
+                  className="form-select form-select-lg "
+                  style={{ width: "350px" }}
+                  onChange={(e) => {
+                    const category = e.target.value;
+                    setCategory(category);
+                  }}
+                  required
+                >
+                  <option className="option"  value="">
+           
+                    شغل مورد نظر خود را انتخاب کنید
+ 
+                    
+                  </option>
+                  <option className="option"  id="freelance" value="فریلنسری"    >
+                    فریلنسری
+                  </option>
+                  <option className="option" id="azad" value="آزاد"   >
+                     آزاد
+                  </option>
+                  <option className="option" id="employee" value="کارمندی"   >
+                    کارمندی
+                  </option>
+                </select>
+              </div>
+
+           
+              <div
+                className="mt-4 col-12"
+                style={{ width: "700px", height: "100px" }}
+              >
+                <NoteEditor getNoteFromEditor={getNoteFromEditor} />
+              </div>
+              <input className="button" type="button" value="ارسال" onClick={addNote} />
+            </div>
+          </div>
+        </div>
+        <div className="col colortooldernote">
+          <div className="colortooldernote">
+            <h5>نوشته های قدیمی:</h5>
+          
+              {/* 
+              category: "شغل مورد نظر خود را انتخاب کنید\nفریلنسری\nآزاد\nکارمندی"
+desc: "<p>im mina</p>"
+firstName: "sobina"
+id: 19
+insertTime: "2021-12-20T20:08:48.8544602"
+isConfirmed: false
+lastName: "mobina"
+title: "تست"
+userId: 12
+              */}
+    {
+      fullData.map((element)=>{
+      const {cat,des,firstName,id,insertTime,isConfirmed,lastName,title,userId}=element
+        return(
+          <div className="col-lg-4 col-md-6 portfolio-item filter-card">
+          <div className="card h-75" style={{ width: "300px" }}>
+            <div className="card-body  ">
+               {/* <small dir="ltr">{element.inserTime}</small>  */}
+              <h5 className="card-title">{element.category} </h5>
+              <p className="card-text border ">
+               {element.desc}
+                 </p>
+                 <button onClick={()=>removeNote(id)} >delete  </button>
+                 <button onClick={()=>updateNote(id,cat,des)} >update</button>
+            </div>
+          </div>
+        </div>
+        )
+      })
+    
+    }
+            
+              
+      
+          </div>
+        </div>
+
+       
+      </div>
+      {/* <ShowNotes  category={category}  note={note} firstName={firstName} /> */}
+    </section>
+  );
+  =====================================================================================
+  header
+
+
+  //     <nav className="navbar navbar-expand-lg navbar-light bg-light rtl">
+//       <div className="container-fluid">
+//         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+//           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+//             <li className="nav-item">
+//               <Link className="nav-link active" aria-current="page" to="/">
+//                 صفحه اصلی
+//               </Link>
+//             </li>
+            
+// {/*            
+//              {
+//               isAuth ?(
+//                 <li className="nav-item">
+//                 <a  style={{cursor:"pointer"}} onClick={handleSignOut}> خروج</a>
+//               </li>
+//               ) : ( <li className="nav-item">
+//               <Link className="nav-link" to="/login">
+//                 ورود{" "}
+//               </Link>
+//             </li>)
+//             }  */}
+//             {!isAuth ? (
+//               <li className="nav-item">
+//                 <Link className="nav-link" to="/login">
+//                   ورود{" "}
+//                 </Link>
+//               </li>
+//             ) : null}
+
+//             {isAuth ? (
+//               <li className="nav-item">
+//                 <a  style={{cursor:"pointer"}}  onClick={handleSignOut}> خروج</a>
+//               </li>
+//             ) : null} 
+
+//             <li className="nav-item">
+//               <Link className="nav-link" to="/note">
+//                 صفحه شما
+//               </Link>
+//             </li>
+//             <li className="nav-item ">
+//               <img src={logo} className="navbar-brand logo" />
+//             </li>
+//           </ul>
+//         </div>
+//       </div>
+//     </nav>

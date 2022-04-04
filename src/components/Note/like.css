@@ -1,0 +1,156 @@
+.like-container{
+    position: relative;
+    width: 100%;
+    height: 1000px;
+    margin-top: 4rem;
+    background-color:rgb(231, 228, 228);
+}
+
+
+.like-header{
+    border-radius: 17px 17px 0 0 !important;
+    background-color: gray;
+    max-height: 70px;
+   width: 31%;
+   position: absolute;
+   margin-bottom: 12px;
+   border-radius: 17px;
+}
+
+
+
+.like-icon{
+    color: rgba(247, 31, 71, 0.63);
+    cursor: pointer;
+   margin-top: -10px ;
+}
+
+
+.like-category{
+    margin-top: -83px;
+padding-top: 10px;
+margin-left: 8px !important;
+} 
+
+
+
+.qoute-box{
+   
+
+    overflow-y: auto;
+    margin-top: 70px;
+    margin-left: 16px;
+    padding-top: -25px;
+    background-color: rgba(245, 237, 237, 0.788);
+    color: black;
+    width: 97%;
+   height: 200px;
+   border-collapse: separate;
+   -moz-box-shadow:    3px 6px 3px 3px #ccc;
+    -webkit-box-shadow: 3px 6px 3px 3px #ccc;
+    box-shadow:  3px 6px 5px 3px #ccc;
+}
+.qoutation-mark{
+    margin-top: 5px;
+    margin-bottom: -40px;
+    font-weight: bold;
+    font-size:60px;
+    color: rgba(240, 20, 61, 0.63);;
+    font-family: "Times New Roman", Times, Serif;
+}
+.qoute-text{
+    font-size:19px;
+    margin-top:-30px;
+    margin-right:8px
+}
+/* blockquote {
+    border-left:none;
+  position: absolute;
+
+}
+.area h2{
+    font-family: 'vazir';
+    font-size: 3.2rem ;
+}
+
+.like-container{
+    position: relative;
+   width: 350px;
+   height: 170px;
+   margin: 150px 150px;
+}
+
+.quote-badge {
+    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.2);    
+}
+
+ .like-header{
+    border-top-left-radius: 17px!important;
+    border-top-right-radius: 17px!important; 
+  background-color: gray;
+    max-height: 70px;
+   width: 350px;
+    position: absolute;
+    margin-bottom: 12px;
+    border-radius: 17px;
+ 
+  
+ }
+ .like-icon{
+     color: rgba(240, 20, 61, 0.63);
+   cursor: pointer;
+  margin-top: -10px ;
+
+
+ }
+.like-category{
+margin-top: -35px;
+padding-top: 10px;
+padding-left: 8px;
+
+
+}
+
+ .quote-box  {
+    overflow-y: auto;
+    margin-top: 70px;
+    padding-top: -25px;
+ 
+
+   
+    background-color: rgba(245, 237, 237, 0.788);
+    color: black;
+    width: 350px;
+   height: 230px;
+
+
+   border-collapse: separate;
+   -moz-box-shadow:    3px 6px 3px 3px #ccc;
+    -webkit-box-shadow: 3px 6px 3px 3px #ccc;
+    box-shadow:        3px 6px 5px 3px #ccc;
+
+    
+}
+
+
+
+.quotation-mark {
+    
+    margin-top: 5px;
+    margin-bottom: -40px;
+    font-weight: bold;
+    font-size:60px;
+    color: rgba(240, 20, 61, 0.63);;
+    font-family: "Times New Roman", Times, Serif;
+    
+}
+
+.quote-text {
+
+    font-size: 19px;
+    margin-top: -30px;
+    margin-left: 8px;
+   
+}
+ */
