@@ -1,55 +1,106 @@
-import React, { useState,useRef  } from "react";
+import React, { useState, useRef } from "react";
 import { useEffect } from "react";
-import { useFormik } from "formik";
-import Select from "react-select";
-import csc from "country-state-city";
-import { optionCSS } from "react-select/dist/declarations/src/components/Option";
-import Cities from "./cities.json"
-import Provinces from"./provinces.json"
-
-
-
+import Cities from "./cities.json";
+import Provinces from "./provinces.json";
+import "./Profile.css";
+import { Link, useHistory } from "react-router-dom";
 
 function Profile() {
+  const history = useHistory();
+  const [provinceId, setProvince] = useState();
+  const [image, setImage] = useState(null);
+  const [resume,setResume]=useState(null)
+  const [result, setResult] = useState(null);
+  const [category, setCategory] = useState();
+  const [edu, setEdu] = useState();
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState();
+  const [age, setAge] = useState("");
+  const [jobType, setJobType] = useState("");
+  const [jobStatus, setJStatus] = useState("");
+  const [name, setName] = useState("");
+  const [fname, setfName] = useState("");
+  const [cityNum, setCityNum] = useState();
+  const [desc, setDesc] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [linkedin, setLinkedIn] = useState("");
 
-  const [provinceId,setProvince]=useState()
-    const [city,setCity]=useState()
+  useEffect(() => {
+    console.log(image);
+    console.log(result);
+  }, []);
 
-  const cityHandler=()=>{
-     Cities.map((element,i)=>(
-     if( element.province_id === provinceId) {} 
-          <option value={element.id} >{element.name}</option>
-      
-     ))
+  const handleConfirm = (e) => {
+    e.preventDefault();
+    var axios = require("axios");
+    var FormData = require("form-data");
+    var fs = require("fs");
+    var data = new FormData();
+    data.append("Age", age);
+    data.append("JobType", category);
+    data.append("JobStatus", jobStatus);
+    data.append("EducationNum", edu);
+    data.append("City", cityNum);
+    data.append("Village", cityNum);
+    data.append("ProfileDesc", desc);
+    data.append("Linkdin", linkedin);
+    data.append("Instagram", instagram);
+    data.append("JobTitle", "programmer");
+    data.append("pic_file", image) ;
+    data.append("height", "300");
+    data.append("width", "300");
+    data.append("quality", "500");
+    data.append("IsClientSide", "true");
+    data.append("Token","6219fb1e-ce41-4f15-b755-ef30234760a4");
+    data.append("UserId", localStorage.getItem("userId"));
 
+    var config = {
+      method: "post",
+      url: "https://api.jobexp.ir/api/user/SetProfile",
+      headers: {
+        ...data,
+      },
+      data: data,
+    };
 
+    axios(config)
+      .then(function (response) {
+        console.log(response.data);
+        //  history.push("/")
+        setResult(response.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      //get the file that you actually selected..so get the first file that you suspected because somtimes you can click multiple files
+      setImage(e.target.files[0]);
+      console.log(image);
+    }
+  };
+  
+  const handleResume=(e)=>{
+    if (e.target.files[0]) {
+      //get the file that you actually selected..so get the first file that you suspected because somtimes you can click multiple files
+      setResume(e.target.files[0]);
+      console.log(resume);
+    }
   }
 
-
-
-  useEffect(()=>{
-    console.log(provinceId);
-   
-  } ,[provinceId])
-
-
-
   return (
-    <div className="main-content">
+    <div className="main-content rtl ">
       {/* Top Navbar */}
 
       <nav
-        className="navbar navbar-top navbar-expand-md navbar-dark"
+        className="navbar-p navbar-top navbar-expand-md navbar-dark rtl "
         id="navbar-main"
       >
-        <div className="container-fluid">
+        <div className="container-fluid-p ">
           {/* Brand */}
-          <a
-            className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block "
-            href="#"
-          >
-            User Profile
-          </a>
+
           {/* End Brand */}
 
           {/* User */}
@@ -71,7 +122,7 @@ function Profile() {
                     />
                   </span>
                   <div className="media-body ml-2 d-none d-lg-block">
-                    <span className="mb-0 text-sm font-wight-bold">
+                    <span className="mb-0 text-sm font-wight-bold ">
                       Mina Haseli
                     </span>
                   </div>
@@ -117,17 +168,25 @@ function Profile() {
         <span className="mask bg-gradient-default opacity-8"></span>
 
         {/* Header container */}
-        <div className="container-fluid d-flex align-items-center">
+        <div className="container-fluid-p d-flex align-items-center ">
           <div className="row">
-            <div className="col-lg-7 col-md-10">
-              <h1 className="display-2 text-white">سلام مینا</h1>
+            <div className="col-lg-7 col-md-10 ">
+              <h1 className="display-2 text-white ">سلام مینا</h1>
               <p className="text-white mt-0 mb-5">
                 شرکت طراحی سایت و برنامه نویسی دات وب با ارائه خدمات طراحی سایت
                 و طراحی اپلیکیشن و سئو و بهینه سازی وب سایت کمک بسیار به کسب و
               </p>
-              <a href="#" className="btn btn-info">
-                ویرایش پروفایل
-              </a>
+              <div className="btn-p btn-info">
+                <label for="avatar" className="custom-file-upload">
+                  آپلود فایل
+                </label>
+                <input
+                  id="avatar"
+                  className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block  "
+                  type="file"
+                  onChange={(e) => handleImageChange(e)}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -137,213 +196,480 @@ function Profile() {
       {/* End Header */}
 
       {/* Page Content */}
-      <div className="container-fluid mt--7">
-        <div className="row">
-          <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-            <div className="card card-profile shadow">
-              <div className="row justify-content-center">
-                <div className="col-lg-3 order-lg-2">
-                  <div className="card-profile-image">
-                    <a href="#">
-                      <img
-                        className="rounded-circle"
-                        src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
-                        alt="content"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
+      <div classsName="col d-flex justify-content-center ">
+        <div className="container-fluid-p mt--7  ml-md-auto">
+          {/* <div className="row" style={{backgroundColor:"red"}}> */}
+          {/* <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0"></div> */}
 
-              <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                <div className="d-flex justify-content-between">
-                  <a className="btn btn-sm btn-info mr-4" href="#">
-                    {" "}
-                    وصل شدن{" "}
-                  </a>
-                  <a className="btn btn-sm btn-default float-right" href="#">
-                    پیام دادن{" "}
-                  </a>
-                </div>
-              </div>
-              <div className="card-body pt-0 pt-md-4">
-                <div className="row">
-                  <div className="col">
-                    <div className="card-profile-stats d-flex justify-content-center mt-md-5">
-                      <div>
-                        <span className="heading">22</span>
-                        <span className="description"> دوستان</span>
-                      </div>
-                      <div>
-                        <span className="heading">89</span>
-                        <span className="description">دیدگاه</span>
-                      </div>
+          <div className="row  justify-content-center p-row ">
+            <div className="col-xl-8 order-xl-1  text-center">
+              <div className="card-p bg-secondary shadow">
+                <div className="card-p-header bg-white border-0">
+                  <div className="row align-items-center">
+                    <div className="col-8">
+                      <h3 className="mb-0">حساب من</h3>
+                    </div>
+                    <div className="col-4 text-right">
+                      <a href="#" className="btn-p btn-sm btn-primary">
+                        Settings
+                      </a>
                     </div>
                   </div>
                 </div>
+                <div className="card-p-body  ">
+                  <form onSubmit={(e) => handleConfirm(e)}>
+                    <h6 className="heading-small text-muted mb-4">
+                      اطلاعات کاربر
+                    </h6>
 
-                <div className="text-center">
-                  <h3>
-                    Jessica Jones<span className="font-weight-light">, 27</span>
-                  </h3>
-                  <div className="h5 font-weight-300">
-                    <i className="ni location_pin mr-2"></i>شیراز ایران
-                  </div>
-                </div>
-                <div className="h5 mt-4">
-                  <i className="ni business_briefcase-24 mr-2"></i>Solution
-                  Manager - Creative Tim Officer
-                </div>
-                <div>
-                  <i className="ni education_hat mr-2"></i>دانشگاه خلیج فارس
-                  بوشهر{" "}
-                </div>
-                <hr className="my-4" />
-                <p>
-                  Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick
-                  Murphy — writes, performs and records all of his own music.
-                </p>
-                <a href="#">نمایش بیشتر</a>
-              </div>
-            </div>
-          </div>
-        </div>
+                    <div className="pl-lg-4 jumbotron-p">
+                      {/* <div className="row ">
+                      <div className="col-lg-6">
+                        <div className="form-group focused"  onChange={(e)=>setUserName(e.target.value)} >
+                          <label
+                            className="form-control-label"
+                            for="input-username"
+                          >
+                            نام کاربری
+                          </label>
+                          <input
+                            type="text"
+                            id="input-username"
+                            className="form-control form-control-alternative"
+                            placeholder="نام کاربری"
 
-        <div className="col-xl-8 order-xl-1">
-          <div className="card bg-secondary shadow">
-            <div className="card-header bg-white border-0">
-              <div className="row align-items-center">
-                <div className="col-8">
-                  <h3 className="mb-0">حساب من</h3>
-                </div>
-                <div className="col-4 text-right">
-                  <a href="#" className="btn btn-sm btn-primary">
-                    Settings
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="card-body">
-              <form>
-                <h6 className="heading-small text-muted mb-4">اطلاعات کاربر</h6>
-                <div className="pl-lg-4">
-                  <div className="row">
-                    <div className="col-lg-6">
+                          />
+                        </div>
+                      </div>
+                     
+                    </div> */}
+                      <div className="row">
+                        <div className="col-lg-4">
+                          <div
+                            className="form-group focused"
+                            onChange={(e) => setName(e.target.value)}
+                          >
+                            <label
+                              className="form-control-label float-right"
+                              for="input-first-name"
+                            >
+                              نام:
+                            </label>
+                            <input
+                              type="text"
+                              id="input-first-name"
+                              className="form-control form-control-alternative"
+                              placeholder="نام"
+                           
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-4">
+                          <div
+                            className="form-group focused"
+                            onChange={(e) => setfName(e.target.value)}
+                          >
+                            <label
+                              className="form-control-label float-right"
+                              for="input-last-name"
+                            >
+                              نام خانودگی:
+                            </label>
+                            <input
+                              type="text"
+                              id="input-last-name"
+                              className="form-control form-control-alternative"
+                              placeholder="Last name"
+                             
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-4">
+                          <div
+                            className="form-group focused"
+                            onChange={(e) => setAge(e.target.value)}
+                          >
+                            <label
+                              className="form-control-label float-right"
+                              for="input-age"
+                            >
+                              سن:
+                            </label>
+                            <input
+                              type="number"
+                              id="input-age"
+                              className="form-control form-control-alternative"
+                              placeholder="سن"
+                            
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6">
+                          <div
+                            className="form-group"
+                            onChange={(e) => setInstagram(e.target.value)}
+                          >
+                            <label
+                              className="form-control-label float-right"
+                              for="input-email"
+                           
+                            >
+                              اینستاگرام:
+                            </label>
+                            <input
+                              type="email"
+                              id="input-email"
+                              className="form-control form-control-alternative float-right"
+                              placeholder="اینجا وارد کنید"
+                            
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6">
+                          <div
+                            className="form-group"
+                            onChange={(e) => setLinkedIn(e.target.value)}
+                          >
+                            <label
+                              className="form-control-label float-right"
+                              for="input-email"
+                            >
+                              لینکدین:
+                            </label>
+                            <input
+                              type="email"
+                              id="input-email"
+                              className="form-control form-control-alternative"
+                              placeholder="اینجا وارد کنید"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row jumbotron-p">
+                      <div
+                        className="col-lg-4"
+                        onChange={(e) => setEdu(e.target.value)}
+                      >
+                        <div class="form-check">
+                          <h6 className="heading-small text-muted mb-4">
+                            مقطع تحصیلی
+                          </h6>
+                          <input
+                            name="options"
+                            type="radio"
+                            class="form-check-input"
+                            id="radio1"
+                            value={1}
+                          />
+                          دیپلم
+                          <label class="form-check-label" for="radio1"></label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            id="radio2"
+                            name="options"
+                            value={2}
+                          />
+                          کارشناسی
+                          <label
+                            className="form-check-label"
+                            for="radio2"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            id="radio3"
+                            name="options"
+                            value={3}
+                          />
+                          کارشناسی ارشد
+                          <label
+                            className="form-check-label"
+                            for="radio3"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            id="radio4"
+                            className="form-check-input"
+                            name="options"
+                            value={4}
+                          />
+                          دکترا
+                          <label
+                            className="form-check-label"
+                            for="radio4"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            id="radio5"
+                            className="form-check-input"
+                            name="options"
+                            value={4}
+                          />
+                          سایر
+                          <label
+                            className="form-check-label"
+                            for="radio5"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+
+                      
+                    <div className="pl-lg-4 jumbotron-p mb-2 pb-2">
+                      <h6 className="heading-small text-muted mb-4 ">
+                        دانشگاه محل   تحصیل
+                      </h6>
                       <div className="form-group focused">
-                        <label
-                          className="form-control-label"
-                          for="input-username"
+                        <label> دانشگاه محل تحصیل  </label>
+                        <textarea
+                          rows="4"
+                          className="form-control form-control-alternative "
+                          placeholder=" "
+                          value={desc}
+                          onChange={(e) => setDesc(e.target.value)}
                         >
-                          نام کاربری
-                        </label>
-                        <input
-                          type="text"
-                          id="input-username"
-                          className="form-control form-control-alternative"
-                          placeholder="نام کاربری"
-                        />
+                         
+                        </textarea>
                       </div>
                     </div>
-                    <div class="col-lg-6">
-                      <div className="form-group">
-                        <label className="form-control-label" for="input-email">
-                          ایمیل
-                        </label>
-                        <input
-                          type="email"
-                          id="input-email"
-                          className="form-control form-control-alternative"
-                          placeholder="jesse@example.com"
-                        />
+
+                    {/* <hr className="my-4" /> */}
+                    <div className="row jumbotron-p ">
+                      <div
+                        className="col-lg-4"
+                        onClick={(e) => setCategory(e.target.value)}
+                      >
+                          <h6 className="heading-small text-muted mb-4">
+                            حیطه شغلی
+                          </h6>
+                        <div className="form-check">
+                          <input
+                            name="category"
+                            type="radio"
+                            className="form-check-input"
+                            value={1}
+                            id="radio1"
+                          />
+                          ازاد
+                          <label
+                            className="form-check-label"
+                            for="radio1"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            id="radio2"
+                            name="category"
+                            value={2}
+                          />
+                          فریلنسری
+                          <label
+                            className="form-check-label"
+                            for="radio2"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            id="radio3"
+                            name="category"
+                            value={3}
+                          />
+                          کارمندی
+                          <label
+                            className="form-check-label"
+                            for="radio3"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            id="radio4"
+                            name="category"
+                            value={4}
+                          />
+                          سایر
+                          <label
+                            className="form-check-label"
+                            for="radio4"
+                          ></label>
+                        </div>
                       </div>
+                     
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-lg-4">
+
+                    <div className="pl-lg-4 jumbotron-p mb-2 pb-2">
+                      <h6 className="heading-small text-muted mb-4 ">
+                        درباره ی من
+                      </h6>
                       <div className="form-group focused">
-                        <label
-                          className="form-control-label"
-                          for="input-first-name"
+                        <label>مهارت های من</label>
+                        <textarea
+                          rows="4"
+                          className="form-control form-control-alternative "
+                          placeholder=" اینجا بنویسید ..."
+                          value={desc}
+                          onChange={(e) => setDesc(e.target.value)}
                         >
-                          نام
-                        </label>
-                        <input
-                          type="text"
-                          id="input-first-name"
-                          className="form-control form-control-alternative"
-                          placeholder="نام"
-                        />
+                         
+                        </textarea>
                       </div>
                     </div>
-                    <div className="col-lg-4">
+
+                    <div className="row jumbotron-p ">
+                      <div
+                        className="col-lg-4"
+                        onClick={(e) => setJStatus(e.target.value)}
+                      >
+                          <h6 className="heading-small text-muted mb-4">
+                            وضعیت شغلی
+                          </h6>
+                        <div className="form-check">
+                          <input
+                            name="status"
+                            type="radio"
+                            className="form-check-input"
+                            value={1}
+                            id="radio1"
+                          />
+                          مشغول به کار
+                          <label
+                            className="form-check-label"
+                            for="radio1"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            id="radio2"
+                            name="status"
+                            value={2}
+                          />
+                          به دنبال کار
+                          <label
+                            className="form-check-label"
+                            for="radio2"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            id="radio3"
+                            name="status"
+                            value={3}
+                          />
+                          کارآموز
+                          <label
+                            className="form-check-label"
+                            for="radio3"
+                          ></label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            id="radio4"
+                            name="status"
+                            value={4}
+                          />
+                          سایر
+                          <label
+                            className="form-check-label"
+                            for="radio4"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Location */}
+
+                    <div className="pl-lg-4 jumbotron-p">
+                      <h6 className="heading-small text-muted mb-4">
+                        اطلاعات محل سکونت
+                      </h6>
+                      <div className="row ">
+                        <div className="col-md-6">
+                          <div className="form-group focused">
+                            {/* <label className="form-control-label" for="input-address">نشانی</label> */}
+
+                            <select
+                              className="form-control-label"
+                              onChange={(e) => setProvince(e.target.value)}
+                            >
+                              {Provinces.map((province, i) => (
+                                <option value={province.id} key={i}>
+                                  {province.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-group focused">
+                            <select
+                              className="form-control-lable"
+                              style={{ width: "134px" }}
+                              onChange={(e) => setCityNum(e.target.value)}
+                            >
+                              {Cities.filter(
+                                (city) => city.province_id == provinceId
+                              ).map((element) => (
+                                <option value={element.id}>
+                                  {element.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="pl-lg-4 jumbotron-p resume mb-2 pb-2">
+                      <h6 className="heading-small text-muted mb-4 ">
+                        رزومه 
+                      </h6>
                       <div className="form-group focused">
-                        <label
-                          className="form-control-label"
-                          for="input-last-name"
-                        >
-                          نام خانودگی
-                        </label>
-                        <input
-                          type="text"
-                          id="input-last-name"
-                          className="form-control form-control-alternative"
-                          placeholder="Last name"
-                        />
+                      <input
+                  id="resume"
+                  className="h4 mb-0 text-white text-uppercase resume-btn d-none d-lg-inline-block " 
+                  type="file"
+                  onChange={(e) => handleResume(e)}
+                />
+                        
                       </div>
                     </div>
-                    <div className="col-lg-4">
-                      <div className="form-group focused">
-                        <label className="form-control-label" for="input-age">
-                          سن
-                        </label>
-                        <input
-                          type="number"
-                          id="input-age"
-                          className="form-control form-control-alternative"
-                          placeholder="سن"
-                        />
-                      </div>
-                    </div>
-                  </div>
+
+                    {/* Description */}
+                
+                    {/* <Link className="btn btn-info " to="/"  onClick={(e)=>handleConfirm} >
+                                تایید
+                                
+                  </Link> */}
+                    <input
+                      type="submit"
+                      className="btn-p btn-info"
+                      value="تایید"
+                      onClick={(e) => handleConfirm(e)}
+                    />
+                  </form>
                 </div>
-                <hr className="my-4" />
-
-                {/* Location */}
-
-                <h6 className="heading-small text-muted mb-4">
-                  {" "}
-                  اطلاعات تماس{" "}
-                </h6>
-                <div className="pl-lg-4">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="form-group focused">
-                        {/* <label className="form-control-label" for="input-address">نشانی</label> */}
-
-                        <select  onChange={(e)=>setProvince(e.target.value)}  > 
-                        {
-                          Provinces.map((province,i)=>(
-                            <option  value={province.id} key={i} >{province.name}</option>
-                          ))
-                        }
-                        </select>
-                        <select>
-
-                          {/* {
- Cities.map((element)=>(
-  
-if(element.province_id===provinceId)
-retu
-)) */}
-
-                          }
-                        </select>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>

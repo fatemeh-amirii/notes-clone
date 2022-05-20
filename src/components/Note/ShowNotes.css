@@ -15,7 +15,13 @@
     height: 200px;
     transition: 0.5s;
 }
-
+.card-footer.hashtag {
+    
+    text-align: right;
+}
+.hashtag{
+    display:block;
+}
 .container .card .face.face1{
     position: relative;
     background: #333;
@@ -102,3 +108,16 @@
     float:left;
 }
 
+.box{
+  
+    position: absolute;
+    bottom: 0px;
+
+}
+.note-p{
+    margin-bottom: 12px;
+}
+.body-card{
+    text-align:center;
+    position: relative;
+}

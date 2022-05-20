@@ -28,9 +28,9 @@ const confirmNote=(event)=>{
 
   var axios = require('axios');
 var data = JSON.stringify({
-  "IsClientSide": false,
-  "noteId":parseInt(event.value),
-  "Token":  localStorage.getItem("token")
+  IsClientSide: false,
+  noteId:parseInt(event.value),
+  Token:  localStorage.getItem("token")
 });
 
 var config = {
@@ -48,9 +48,9 @@ axios(config)
   console.log(JSON.stringify(response.data));
   var axios = require('axios');
   var data = JSON.stringify({
-    "IsClientSide": false,
-    "Category": category,
-    "Token":localStorage.getItem("token")
+    IsClientSide: false,
+    Category: category,
+    Token: localStorage.getItem("token")
   });
   
   var config = {
@@ -119,9 +119,9 @@ console.log(data);
  const getUserNote = () => {
   var axios = require('axios');
   var data = JSON.stringify({
-    "IsClientSide": false,
-    "Category": category,
-    "Token":localStorage.getItem("token")
+    IsClientSide: false,
+    Category: category,
+    Token:"bf69c11f-a75e-4339-ad2c-f935a978e443"
   });
   
   var config = {

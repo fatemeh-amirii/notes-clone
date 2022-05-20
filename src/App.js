@@ -8,8 +8,7 @@ import Register from "./components/LoginRegister/Register";
 import ShowNotes from "./components/Note/ShowNotes";
 import AdminPage from "./components/Admin/AdminPage";
 import Success from "./components/ShowMessage/Success";
-
-
+import PublicProfile from "./components/Profile/PublicProfile";
 import Controller from "./components/Controler/controller";
 import AdminController from "./components/Admin/Controller/controller"
 import EditAdmin from "./components/Admin/EditAdmin";
@@ -39,14 +38,26 @@ function App() {
           <Header />
           <Success />
         </Route>
+        <Route exact path="/note">
+            <Header />
+            <Note />
+          </Route>
+
+          <Route  path="/ShowNotes">
+            <Header />
+            <ShowNotes />
+          </Route>
 
         <Route  path="/myProfile">
             <Header />
            <Profile/>
           </Route>
 
-        <Controller>
-        <AdminController>
+<Route  path="/publicProfile" >
+  <Header/>
+  <PublicProfile/>
+</Route>
+<AdminController>
           <Route  path="/admin" >
             <AdminPage/>
           </Route>
@@ -56,26 +67,20 @@ function App() {
           </Route>
           
           </AdminController>
+        <Controller>
+       
 
           {/* <Route path="/editeNote">
             <Header />
             <Update />
           </Route> */}
 
-          <Route path="/note">
-            <Header />
-            <Note />
-          </Route>
-
-          <Route  path="/ShowNotes">
-            <Header />
-            <ShowNotes />
-          </Route>
-          
-        
 
         
         </Controller>
+        
+          
+        
      
         
       </Switch>

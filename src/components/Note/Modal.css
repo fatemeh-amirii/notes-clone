@@ -1,10 +1,11 @@
-body{
-    margin-top:20px;
+/* body{
+  margin-top: 4rem !important;
     background:#FAFAFA;    
-}
-.modal-container{
-    margin-top: 4rem;
-}
+} */
+/* .modal-container{
+  top: 4rem !important;
+    margin-top: 3rem ;
+} */
 .people-nearby .google-maps{
     background: #f8f8f8;
     border-radius: 4px;
@@ -20,12 +21,74 @@ body{
   }
   .people-nearby .nearby-user{
     padding: 20px 0;
-    border-top: 1px solid #f1f2f2;
-    border-bottom: 1px solid #f1f2f2;
+    /* border-top: 1px solid #e43c5c; */
+    border-bottom: 1px solid #e43c5c;
     margin-bottom: 20px;
   }
   img.profile-photo-lg{
     height: 80px;
     width: 80px;
     border-radius: 50%;
+    /* border: px solid black; */
   }
+  .profile-link{
+    color:#df536d;
+  }
+
+
+  .comment-modal{
+ 
+  height: 80%;
+  width: 50%;
+    margin-left: 20rem;
+  display: flow-root;
+  border: 1px solid black !important;
+  border-radius: 10px !important;
+  background-color: #ffffff;
+  overflow: auto;
+  }
+  .raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover) !important;
+  transform: translateY(-0.25em) !important;
+}
+.button{
+  font-family: "yekan";
+  background: none;
+  border: 2px solid #e43c5c;
+  color: black;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+.btn-1{
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+.btn-1:before {
+  content: "";
+  position: absolute;
+  height: 150px;
+  width: 50px;
+  background : blue;
+  left: -55px;
+  top: -40px;
+  transform: rotate(37deg);
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-1:hover:before {
+  left:95%;
+}
+ .ml-2{
+  margin-left: 20rem !important;
+} 

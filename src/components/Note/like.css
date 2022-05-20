@@ -1,8 +1,95 @@
-.like-container{
+@font-face {
+    font-family: vazir ;
+    src: url('../../fonts/Vazir-Bold-FD.eot')format('eot'),
+    url('../../fonts/Vazir-Bold-FD.ttf')format('truetype'),
+    url('../../fonts/Vazir-Bold-FD.woff')format('woff');
+    font-weight: normal;
+    font-style: normal;  
+    
+}
+
+
+
+
+#authors .jumbotron{
+    padding: 1rem 0 3rem;
+    background-color: #e1e1e4!important;
+
+}
+
+.authors .card{
+    box-shadow:2px 2px 5px  rgba(224, 112, 133, 0.63);
+    border-radius: 0;
+    margin:1rem 0;
+  
+}
+.authors .card:hover{
+    background-color:  rgba(224, 112, 133, 0.63);
+}
+
+
+
+.authors .card:hover h3,
+.authors .card:hover p{
+    color: white;
+}
+
+.card .img-fluid{
+    margin-top: -70px;
+
+}
+/* .over{
+    overflow-y: auto;
+} */
+.card-body{
+    max-height: 20rem;
+    min-height: 20rem;
+}
+.card-body h4{
+    font-family: "Vazir";
+    font-size: 1.1rem;
+    columns: #000;
+    font-weight: 800;
+}    
+.card-body h5{
+    font-size: 1rem;
+    color: rgb(141, 137, 137);
+    font-weight: bolder;
+}    
+
+.card-body p{
+    font-family: "Vazir";
+    font-size: 0.9rem;
+    text-align: justify;
+ 
+
+}
+
+.card-body i{
+  
+    font-size: 1.7rem;
+}
+
+.card-body i:hover{
+ 
+    font-size: 1.7rem;
+}
+
+
+
+
+
+/* body{
+    overflow-x:hidden;
+} */
+
+
+/* .like-container{
     position: relative;
     width: 100%;
     height: 1000px;
     margin-top: 4rem;
+    overflow-x:hidden;
     background-color:rgb(231, 228, 228);
 }
 
@@ -10,8 +97,8 @@
 .like-header{
     border-radius: 17px 17px 0 0 !important;
     background-color: gray;
-    max-height: 70px;
-   width: 31%;
+    min-height: 70px;
+   width:90%;
    position: absolute;
    margin-bottom: 12px;
    border-radius: 17px;
@@ -62,7 +149,7 @@ margin-left: 8px !important;
     font-size:19px;
     margin-top:-30px;
     margin-right:8px
-}
+} */
 /* blockquote {
     border-left:none;
   position: absolute;

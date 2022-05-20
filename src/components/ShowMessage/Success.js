@@ -14,7 +14,7 @@ function Success() {
   useEffect(() => {
     var axios = require("axios");
     var data = JSON.stringify({
-      Token: localStorage.getItem("token"),
+      Token:"9786893e-c8d2-438e-964e-d43c64048218",
     });
 
     var config = {
@@ -54,7 +54,7 @@ function Success() {
       <div className="container" >
         <div className="section-title">
           <h4 className="payam">پیام</h4>
-        <hr className="hr-text" data-content="And"/>
+        <hr className="hr-text" data-content="__"/>
         </div>
 
         <div className="row " >
@@ -79,14 +79,14 @@ function Success() {
                             تجربه شما با تیتر&nbsp;{element.title}&nbsp; با
                             موفقیت در سایت منتشر شد
                           </p>
-                          <button
+                          {/* <button
                             type="button"
                             className="close"
                             data-dismiss="alert"
                             aria-label="Close"
                           >
                             <span aria-hidden="true">&times;</span>
-                          </button>
+                          </button> */}
                         </div>
                        
                       </div>
@@ -100,7 +100,7 @@ function Success() {
                           تجربه شما با تیتر &nbsp;{element.title}&nbsp;در انتظار
                           تایید ادمین است
                         </p>
-                        <button
+                        {/* <button
                           type="button"
                           className="close"
                           data-dismiss="alert"
@@ -108,7 +108,7 @@ function Success() {
                           // onClick={(e)=>handleAlert()}
                         >
                           <span aria-hidden="true">&times;</span>
-                        </button>
+                        </button> */}
                       </div>
                     );
                   }

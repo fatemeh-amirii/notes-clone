@@ -11,6 +11,7 @@
 body {
     font-family: "Open Sans", sans-serif;
     color: #444444;
+ 
   }
   
   a {
@@ -91,7 +92,7 @@ body {
   /**
   * Desktop Navigation 
   */
-  .navbar {
+  /* .navbar {
     padding: 0;
   }
   .navbar ul {
@@ -198,11 +199,11 @@ body {
       left: -100%;
     }
   }
-  
+   */
   /**
   * Mobile Navigation 
   */
-  .mobile-nav-toggle {
+  /* .mobile-nav-toggle {
     color: #fff;
     font-size: 28px;
     cursor: pointer;
@@ -291,7 +292,7 @@ body {
   .navbar-mobile .dropdown > .dropdown-active {
     display: block;
   }
-  
+   */
   /*--------------------------------------------------------------
   # Hero Section
   --------------------------------------------------------------*/
@@ -301,6 +302,7 @@ body {
     background: url("./assets/img/hero-bg.jpg") top center;
     background-size: cover;
     position: relative;
+    top:0 !important;
   }
   #hero:before {
     content: "";

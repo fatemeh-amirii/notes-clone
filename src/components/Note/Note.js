@@ -4,8 +4,8 @@ import NoteEditor from "../NoteEditor/NoteEditor";
 //import "./Note.css";
 import axios from "axios";
 import image from "./te.jpg";
-import {Link} from "react-router-dom"
-import "./like.css"
+import {Link,useHistory} from "react-router-dom"
+// import "./like.css"
 
 function Note() {
   // states:
@@ -17,6 +17,7 @@ function Note() {
   //const [date] = useState(new Date());
   const [fullData, setFullData] = useState([]);
   //const [noteId,setNoteId]=useState()
+  const [hashtag,setHashtag]=useState("")
 
   useEffect(() => {
     console.log(fullData);
@@ -35,7 +36,7 @@ function Note() {
       Desc: note,
       Title: title,
       Category: category,
-      Token: localStorage.getItem("token"), //localStorage
+      Token: "9786893e-c8d2-438e-964e-d43c64048218", //localStorage
     });
 
     var config = {
@@ -50,10 +51,13 @@ function Note() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        localStorage.setItem("Token", response.data.Token);
+        localStorage.setItem("token", response.data.token);
         // setFullData(response.data.data);
         console.log(response.data.data);
         getUserNote();
+        setNote("")
+        setCategory("")
+        setTitle("")
       })
       .catch(function (error) {
         console.log(error);
@@ -63,7 +67,7 @@ function Note() {
   const getUserNote = () => {
     var axios = require("axios");
     var data = JSON.stringify({
-      Token: localStorage.getItem("token"),
+      Token:"9786893e-c8d2-438e-964e-d43c64048218",
     });
 
     var config = {
@@ -113,12 +117,11 @@ console.log(data);
       });
   };
 
-  
   return (
-    <div>
+    <div  >
       <section id="contact" className="contact" dir="rtl">
-        <div className="container">
-          <div className="section-title">
+        <div className="container ">
+          <div className="section-title ">
             <h1>تجربه تو</h1>
             <br />
             <p2>تو اونقدر با تجربه هستی که بنویسی</p2>
@@ -128,8 +131,8 @@ console.log(data);
             <img src={image} className="img-fluid" alt="" />
           </div>
 
-          <div className="row mt-5 float-right">
-            <div className="col-lg-4 float-right">
+          <div className="row  mt-5 float-right">
+            <div className="col-lg-6  justify-content-center ">
               <div className="info float-right">
                 <div className="address">
                   <i className="bi bi-arrow-down-left-circle float-right "></i>
@@ -147,10 +150,10 @@ console.log(data);
                 </div>
               </div>
             </div>
-            <div className="col-lg-8 mt-5 mt-lg-0">
+            <div className="col-lg-6 mt-5 mt-lg-0">
               <form role="form" className="php-email-form">
-                <div className="row">
-                  <div className="col-md-6 form-group">
+              
+                  <div className="col-md-16 form-group">
                     <input
                       type="text"
                       name="name"
@@ -162,7 +165,7 @@ console.log(data);
                       required
                     />
 
-                    <div className="form-group mt-3">
+                    <div className="form-group col-12 mt-3">
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label=".form-select-lg example"
@@ -177,7 +180,7 @@ console.log(data);
                         <option value="فریلنسری">فریلنسری</option>
                       </select>
                     </div>
-                    <div className="form-group mt-3">
+                    <div className="form-group col-12 mt-3">
                       <textarea
                         className="form-control"
                         name="message"
@@ -187,6 +190,19 @@ console.log(data);
                         onChange={(e) => setNote(e.target.value)}
                         required
                       ></textarea>
+                    </div>
+                    <div className="form-group col-12 mt-3">
+                   <textarea
+                     className="form-control"
+                     name="hashtag"
+                     rows="2"
+                     placeholder="برچسب"
+                     value={hashtag}
+                     onChange={(e) => setHashtag(e.target.value)}
+                     
+                   >
+
+                   </textarea>
                     </div>
                     <div className="my-3">
                       <div className="loading">در حال ارسال </div>
@@ -206,65 +222,49 @@ console.log(data);
                       />
                     </div>
                   </div>
-                </div>
+               
               </form>
             </div>
           </div>
         </div>
       </section>
 
-      <div dir="rtl" className="area text-center" style={{ marginTop: "8rem" }}>
-            <div className="col-12">
-              <h2>نوشته های تو</h2>
-              <div className="underline"></div>
-            </div>
-            <div className="like-container">
-              <div className="row text-center ">
-                {fullData.map((element) => {
-                  if (element.isConfirmed) {
-                    return (
-                      <div key={element.id} id="card-item" className="col-4">
-                        <div className="blog-post-action like-header">
-                        <div>
-                            <p
-                              dir="rtl"
-                              className="blog-post-bottom h5 float-right">
-                              {element.title}
-                            </p>
-                          </div>
-                          <br />
-
-                         
-                          <p className="like-category">
-                            <small>{element.category}</small>
-                          </p>
-                        </div>
-                        <blockquote className="qoute-box">
-                          <div>
-                            <p className="qoutation-mark" >
-                            “
-                           </p>
-                            <hr/>
-                            <br/>
-
-                            <p className="qoute-text">
-                                                  
-                            {element.desc}
-                            {element.desc}
-                       
-
-                            </p>
-
-
-
-                          </div>
-                        </blockquote>
-                      </div>
-                    );
-                  } else return null;
-                })}
+      <div dir="rtl" className="area justify-content-center" style={{ marginTop: "8rem" }}>
+      <div className="authors" id="authors">
+            <div className="bg-light jumbotron">
+              <div className="col-12 text-center">
+                <h2 className="title"> نوت های شما</h2>
+                <div className="underline"></div>
               </div>
-            </div>
+          <div className="container text-center py-3">
+                <div className="row ">
+                  {fullData.map((element) => {
+                    if (element.isConfirmed) {
+                      return (
+                        <div className="col-lg-3 col-md-3 author mt-5">
+                          <div className="card flex">
+                            <div className="card-body">
+                             
+                             
+                              <h5> {element.category} </h5>
+
+                              <p>
+                                {element.desc}
+                                {element.desc}
+                              </p>
+
+                             
+                              </div>
+                            </div>
+                          </div>
+                        
+                      );
+                    } else return null;
+                  })}
+                </div>
+              </div>
+              </div>
+              </div>
           </div>
       {/* <section id="team" className="team" dir="rtl">
         <div className="container">
